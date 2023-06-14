@@ -36,14 +36,17 @@
             this.txtEndereco = new System.Windows.Forms.TextBox();
             this.mskCpf = new System.Windows.Forms.MaskedTextBox();
             this.mskTel = new System.Windows.Forms.MaskedTextBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnNovo = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
+            this.btnSalvar = new System.Windows.Forms.Button();
+            this.btnExcluir = new System.Windows.Forms.Button();
+            this.btnCancelar = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lblNome
             // 
             this.lblNome.AutoSize = true;
-            this.lblNome.Location = new System.Drawing.Point(42, 54);
+            this.lblNome.Location = new System.Drawing.Point(20, 44);
             this.lblNome.Name = "lblNome";
             this.lblNome.Size = new System.Drawing.Size(38, 13);
             this.lblNome.TabIndex = 0;
@@ -52,7 +55,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(42, 98);
+            this.label1.Location = new System.Drawing.Point(20, 88);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(56, 13);
             this.label1.TabIndex = 1;
@@ -61,7 +64,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(42, 142);
+            this.label2.Location = new System.Drawing.Point(20, 132);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(30, 13);
             this.label2.TabIndex = 2;
@@ -70,7 +73,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(42, 186);
+            this.label3.Location = new System.Drawing.Point(20, 176);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(28, 13);
             this.label3.TabIndex = 3;
@@ -78,40 +81,41 @@
             // 
             // txtNome
             // 
-            this.txtNome.Location = new System.Drawing.Point(45, 70);
+            this.txtNome.Location = new System.Drawing.Point(23, 60);
             this.txtNome.Name = "txtNome";
             this.txtNome.Size = new System.Drawing.Size(385, 20);
-            this.txtNome.TabIndex = 4;
+            this.txtNome.TabIndex = 0;
             // 
             // txtEndereco
             // 
-            this.txtEndereco.Location = new System.Drawing.Point(45, 114);
+            this.txtEndereco.Location = new System.Drawing.Point(23, 104);
             this.txtEndereco.Name = "txtEndereco";
             this.txtEndereco.Size = new System.Drawing.Size(385, 20);
-            this.txtEndereco.TabIndex = 5;
+            this.txtEndereco.TabIndex = 1;
             // 
             // mskCpf
             // 
-            this.mskCpf.Location = new System.Drawing.Point(45, 158);
+            this.mskCpf.Location = new System.Drawing.Point(23, 148);
             this.mskCpf.Name = "mskCpf";
             this.mskCpf.Size = new System.Drawing.Size(180, 20);
-            this.mskCpf.TabIndex = 6;
+            this.mskCpf.TabIndex = 2;
             // 
             // mskTel
             // 
-            this.mskTel.Location = new System.Drawing.Point(45, 202);
+            this.mskTel.Location = new System.Drawing.Point(23, 192);
             this.mskTel.Name = "mskTel";
             this.mskTel.Size = new System.Drawing.Size(180, 20);
-            this.mskTel.TabIndex = 7;
+            this.mskTel.TabIndex = 3;
             // 
-            // button1
+            // btnNovo
             // 
-            this.button1.Location = new System.Drawing.Point(45, 260);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 8;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnNovo.Location = new System.Drawing.Point(23, 250);
+            this.btnNovo.Name = "btnNovo";
+            this.btnNovo.Size = new System.Drawing.Size(75, 23);
+            this.btnNovo.TabIndex = 4;
+            this.btnNovo.Text = "Novo";
+            this.btnNovo.UseVisualStyleBackColor = true;
+            this.btnNovo.Click += new System.EventHandler(this.btnNovo_Click);
             // 
             // label4
             // 
@@ -123,14 +127,47 @@
             this.label4.TabIndex = 9;
             this.label4.Text = "TELA DE CADASTRO DE CLIENTES";
             // 
+            // btnSalvar
+            // 
+            this.btnSalvar.Location = new System.Drawing.Point(104, 250);
+            this.btnSalvar.Name = "btnSalvar";
+            this.btnSalvar.Size = new System.Drawing.Size(75, 23);
+            this.btnSalvar.TabIndex = 5;
+            this.btnSalvar.Text = "Salvar";
+            this.btnSalvar.UseVisualStyleBackColor = true;
+            this.btnSalvar.Click += new System.EventHandler(this.btnSalvar_Click);
+            // 
+            // btnExcluir
+            // 
+            this.btnExcluir.Location = new System.Drawing.Point(185, 250);
+            this.btnExcluir.Name = "btnExcluir";
+            this.btnExcluir.Size = new System.Drawing.Size(75, 23);
+            this.btnExcluir.TabIndex = 6;
+            this.btnExcluir.Text = "Excluir";
+            this.btnExcluir.UseVisualStyleBackColor = true;
+            this.btnExcluir.Click += new System.EventHandler(this.btnExcluir_Click);
+            // 
+            // btnCancelar
+            // 
+            this.btnCancelar.Location = new System.Drawing.Point(266, 250);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(75, 23);
+            this.btnCancelar.TabIndex = 7;
+            this.btnCancelar.Text = "Cancelar";
+            this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
+            // 
             // FrmPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.ClientSize = new System.Drawing.Size(955, 493);
+            this.Controls.Add(this.btnCancelar);
+            this.Controls.Add(this.btnExcluir);
+            this.Controls.Add(this.btnSalvar);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnNovo);
             this.Controls.Add(this.mskTel);
             this.Controls.Add(this.mskCpf);
             this.Controls.Add(this.txtEndereco);
@@ -157,8 +194,11 @@
         private System.Windows.Forms.TextBox txtEndereco;
         private System.Windows.Forms.MaskedTextBox mskCpf;
         private System.Windows.Forms.MaskedTextBox mskTel;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnNovo;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button btnSalvar;
+        private System.Windows.Forms.Button btnExcluir;
+        private System.Windows.Forms.Button btnCancelar;
     }
 }
 
