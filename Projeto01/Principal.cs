@@ -42,27 +42,26 @@ namespace Projeto01
 
         private void ativaCampos()
         {
-            txtNome.Clear();
             txtNome.Enabled=true;
-            txtEndereco.Clear();
             txtEndereco.Enabled=true;
-            mskCpf.Clear();
             mskCpf.Enabled=true;
-            mskTel.Clear();
             mskTel.Enabled=true;
-            txtNome.Focus();
         }
 
         private void desativaCampos()
         {
-            txtNome.Clear();
             txtNome.Enabled = false;
-            txtEndereco.Clear();
             txtEndereco.Enabled = false;
-            mskCpf.Clear();
             mskCpf.Enabled = false;
-            mskTel.Clear();
             mskTel.Enabled = false;
+        }
+
+        private void limpaCampos()
+        {
+            txtNome.Clear();
+            txtEndereco.Clear();
+            mskCpf.Clear();
+            mskTel.Clear();            
         }
 
         private void btnNovo_Click(object sender, EventArgs e)
@@ -70,24 +69,37 @@ namespace Projeto01
             ativaBotoes();
             ativaCampos();
             btnNovo.Enabled=false;
-
         }
 
         private void btnSalvar_Click(object sender, EventArgs e)
         {
-            
+            desativaBotoes();
+            desativaCampos();
+            limpaCampos();
+            btnNovo.Enabled = true;
+            MessageBox.Show("Cliente cadastrado");
         }
 
         private void btnExcluir_Click(object sender, EventArgs e)
         {
-
+            limpaCampos();
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             desativaBotoes();
             desativaCampos();
+            limpaCampos();
             btnNovo.Enabled=true;
+        }
+
+        private void mskCpf_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //Verifica se a tecla precionada é um número ou backspace
+            if (!char.IsDigit(e.KeyChar) && (e.KeyChar != '\b') && (e.KeyChar != '.') && (e.KeyChar != '-'))
+            {
+                e.Handled = true;
+            }
         }
     }
 }

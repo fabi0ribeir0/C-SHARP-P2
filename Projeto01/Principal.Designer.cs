@@ -82,6 +82,7 @@
             // txtNome
             // 
             this.txtNome.Location = new System.Drawing.Point(23, 60);
+            this.txtNome.MaxLength = 80;
             this.txtNome.Name = "txtNome";
             this.txtNome.Size = new System.Drawing.Size(385, 20);
             this.txtNome.TabIndex = 0;
@@ -89,6 +90,7 @@
             // txtEndereco
             // 
             this.txtEndereco.Location = new System.Drawing.Point(23, 104);
+            this.txtEndereco.MaxLength = 200;
             this.txtEndereco.Name = "txtEndereco";
             this.txtEndereco.Size = new System.Drawing.Size(385, 20);
             this.txtEndereco.TabIndex = 1;
@@ -99,6 +101,7 @@
             this.mskCpf.Name = "mskCpf";
             this.mskCpf.Size = new System.Drawing.Size(180, 20);
             this.mskCpf.TabIndex = 2;
+            this.mskCpf.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.mskCpf_KeyPress);
             // 
             // mskTel
             // 
@@ -106,6 +109,7 @@
             this.mskTel.Name = "mskTel";
             this.mskTel.Size = new System.Drawing.Size(180, 20);
             this.mskTel.TabIndex = 3;
+            this.mskTel.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.mskCpf_KeyPress);
             // 
             // btnNovo
             // 
