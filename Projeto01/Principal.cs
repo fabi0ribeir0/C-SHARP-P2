@@ -26,6 +26,10 @@ namespace Projeto01
             btnExcluir.Enabled = false;
         }
 
+        Conexao conect = new Conexao();
+        string sql;
+        MySqlCommand cmd;
+
         private void ativaBotoes()
         {
             btnNovo.Enabled = true;
@@ -74,11 +78,22 @@ namespace Projeto01
 
         private void btnSalvar_Click(object sender, EventArgs e)
         {
+
+            conect.AbrirConexao();
+            sql = "INSERT INTO cliente (nome, endereço, cpf, telefone) VALUES (@nome, @endereço, @cpf, @telefone)";
+            cmd = new MySqlCommand(sql, conect.con);
+            cmd.Parameters.AddWithValue("@nome", txtNome.Text);
+            cmd.Parameters.AddWithValue("@endereço", txtEndereco.Text);
+            cmd.Parameters.AddWithValue("@cpf", mskCpf.Text);
+            cmd.Parameters.AddWithValue("@telefone", mskTel.Text);
+            cmd.ExecuteNonQuery();
+            conect.FecharConexao();
+
             desativaBotoes();
             desativaCampos();
             limpaCampos();
             btnNovo.Enabled = true;
-            MessageBox.Show("Cliente cadastrado");
+
         }
 
         private void btnExcluir_Click(object sender, EventArgs e)
