@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -24,7 +25,7 @@ namespace Projeto01
             btnCancelar.Enabled = false;
             btnExcluir.Enabled = false;
         }
-        
+
         private void ativaBotoes()
         {
             btnNovo.Enabled = true;
@@ -34,18 +35,18 @@ namespace Projeto01
         }
         private void desativaBotoes()
         {
-            btnCancelar.Enabled=false;
-            btnSalvar.Enabled=false;
-            btnExcluir.Enabled=false;
-            btnNovo.Enabled=false;
+            btnCancelar.Enabled = false;
+            btnSalvar.Enabled = false;
+            btnExcluir.Enabled = false;
+            btnNovo.Enabled = false;
         }
 
         private void ativaCampos()
         {
-            txtNome.Enabled=true;
-            txtEndereco.Enabled=true;
-            mskCpf.Enabled=true;
-            mskTel.Enabled=true;
+            txtNome.Enabled = true;
+            txtEndereco.Enabled = true;
+            mskCpf.Enabled = true;
+            mskTel.Enabled = true;
         }
 
         private void desativaCampos()
@@ -61,14 +62,14 @@ namespace Projeto01
             txtNome.Clear();
             txtEndereco.Clear();
             mskCpf.Clear();
-            mskTel.Clear();            
+            mskTel.Clear();
         }
 
         private void btnNovo_Click(object sender, EventArgs e)
         {
             ativaBotoes();
             ativaCampos();
-            btnNovo.Enabled=false;
+            btnNovo.Enabled = false;
         }
 
         private void btnSalvar_Click(object sender, EventArgs e)
@@ -90,7 +91,7 @@ namespace Projeto01
             desativaBotoes();
             desativaCampos();
             limpaCampos();
-            btnNovo.Enabled=true;
+            btnNovo.Enabled = true;
         }
 
         private void mskCpf_KeyPress(object sender, KeyPressEventArgs e)
