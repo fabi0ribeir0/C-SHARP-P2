@@ -145,14 +145,18 @@ namespace Projeto01
         private void btnExcluir_Click(object sender, EventArgs e)
         {
             conect.AbrirConexao();
-            sql = "DELETE FROM cliente nome=@nome, endereço=@endereço, cpf=@cpf, telefone=@telefone WHERE id=@id";
+            sql = "DELETE FROM cliente WHERE id=@id";
+            cmd = new MySqlCommand (sql, conect.con);
             cmd.Parameters.AddWithValue("@id", grid.CurrentRow.Cells[0].Value);
-            
-            
+            cmd.ExecuteNonQuery();
+            conect.FecharConexao();
+
             desativaCampos();
             limpaCampos();
             desativaBotoes();
             btnNovo.Enabled = true;
+
+            ListarGD();
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
