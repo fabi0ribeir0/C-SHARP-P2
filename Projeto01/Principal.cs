@@ -13,6 +13,30 @@ namespace Projeto01
 {
     public partial class FrmPrincipal : Form
     {
+        private void FormatarGD()
+        {
+            grid.Columns[0].HeaderText = "Código";
+            grid.Columns[1].HeaderText = "Nome";
+            grid.Columns[2].HeaderText = "Endereço";
+            grid.Columns[3].HeaderText = "CPF";
+            grid.Columns[4].HeaderText = "Tel.";
+        }
+
+        private void ListarGD()
+        {
+            conect.AbrirConexao();
+            sql = "SELECT * FROM cliente ORDER BY Nome ASC";
+            cmd = new MySqlCommand(sql, conect.con);
+            MySqlDataAdapter da = new MySqlDataAdapter();
+            da.SelectCommand = cmd;
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            grid.DataSource = dt;
+            conect.FecharConexao();
+
+            FormatarGD();
+        }
+
         public FrmPrincipal()
         {
             InitializeComponent();
@@ -37,6 +61,7 @@ namespace Projeto01
             btnSalvar.Enabled = true;
             btnCancelar.Enabled = true;
             btnExcluir.Enabled = false;
+            btnAlterar.Enabled = true;
         }
         private void desativaBotoes()
         {
@@ -44,6 +69,7 @@ namespace Projeto01
             btnSalvar.Enabled = false;
             btnExcluir.Enabled = false;
             btnNovo.Enabled = false;
+            btnAlterar.Enabled= false;
         }
 
         private void ativaCampos()
@@ -118,7 +144,15 @@ namespace Projeto01
 
         private void btnExcluir_Click(object sender, EventArgs e)
         {
+            conect.AbrirConexao();
+            sql = "DELETE FROM cliente nome=@nome, endereço=@endereço, cpf=@cpf, telefone=@telefone WHERE id=@id";
+            cmd.Parameters.AddWithValue("@id", grid.CurrentRow.Cells[0].Value);
+            
+            
+            desativaCampos();
             limpaCampos();
+            desativaBotoes();
+            btnNovo.Enabled = true;
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
@@ -160,8 +194,9 @@ namespace Projeto01
             }
 
             conect.AbrirConexao();
-            sql = "UPDATE cliente SET nome=@nome, endereço=@endereço, cpf=@cpf, telefone=@telefone";
+            sql = "UPDATE cliente SET nome=@nome, endereço=@endereço, cpf=@cpf, telefone=@telefone WHERE id=@id";
             cmd = new MySqlCommand(sql, conect.con);
+            cmd.Parameters.AddWithValue("@id", grid.CurrentRow.Cells[0].Value);
             cmd.Parameters.AddWithValue("@nome", txtNome.Text);
             cmd.Parameters.AddWithValue("@endereço", txtEndereco.Text);
             cmd.Parameters.AddWithValue("@cpf", mskCpf.Text);
@@ -173,6 +208,28 @@ namespace Projeto01
             desativaCampos();
             limpaCampos();
             btnNovo.Enabled = true;
+
+            ListarGD();
+        }
+
+        private void FrmPrincipal_Load(object sender, EventArgs e)
+        {
+            ListarGD();
+        }
+
+        private void grid_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            ativaBotoes();
+            btnNovo.Enabled=false;
+            btnSalvar.Enabled=false;
+            btnAlterar.Enabled=true;
+            btnExcluir.Enabled=true;
+            ativaCampos();
+
+            txtNome.Text = grid.CurrentRow.Cells[1].Value.ToString();
+            txtEndereco.Text = grid.CurrentRow.Cells[2].Value.ToString();
+            mskCpf.Text = grid.CurrentRow.Cells[3].Value.ToString();
+            mskTel.Text = grid.CurrentRow.Cells[4].Value.ToString();
         }
     }
 }
