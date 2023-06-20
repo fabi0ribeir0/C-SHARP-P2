@@ -130,6 +130,17 @@ namespace Projeto01
             }
 
             conect.AbrirConexao();
+
+            sql = "SELECT COUNT(*) FROM cliente WHERE nome = @nome";
+            cmd = new MySqlCommand(sql, conect.con);
+            cmd.Parameters.AddWithValue("@nome", txtNome.Text);
+            int count = Convert.ToInt32(cmd.ExecuteScalar());
+            if (count > 0)
+            {
+                MessageBox.Show($"O Nome {txtNome.Text} já foi cadastrado");
+                return;
+            }
+            
             sql = "INSERT INTO cliente (nome, endereço, cpf, telefone) VALUES (@nome, @endereço, @cpf, @telefone)";
             cmd = new MySqlCommand(sql, conect.con);
             cmd.Parameters.AddWithValue("@nome", txtNome.Text);
