@@ -103,6 +103,7 @@ namespace Projeto01
         {
             ativaBotoes();
             ativaCampos();
+            btnAlterar.Enabled = false;
             btnNovo.Enabled = false;
             txtNome.Focus();
         }
