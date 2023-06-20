@@ -20,6 +20,7 @@ namespace Projeto01
             grid.Columns[2].HeaderText = "Endereço";
             grid.Columns[3].HeaderText = "CPF";
             grid.Columns[4].HeaderText = "Tel.";
+            grid.Columns[4].Width += 3;
         }
 
         private void ListarGD()
@@ -103,6 +104,7 @@ namespace Projeto01
             ativaBotoes();
             ativaCampos();
             btnNovo.Enabled = false;
+            txtNome.Focus();
         }
 
         private void btnSalvar_Click(object sender, EventArgs e)
@@ -140,23 +142,41 @@ namespace Projeto01
             desativaCampos();
             limpaCampos();
             btnNovo.Enabled = true;
+
+            ListarGD();
         }
 
         private void btnExcluir_Click(object sender, EventArgs e)
         {
-            conect.AbrirConexao();
-            sql = "DELETE FROM cliente WHERE id=@id";
-            cmd = new MySqlCommand (sql, conect.con);
-            cmd.Parameters.AddWithValue("@id", grid.CurrentRow.Cells[0].Value);
-            cmd.ExecuteNonQuery();
-            conect.FecharConexao();
+            var res = MessageBox.Show("Excluir usuario?", "Excluir", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            
+            if (res == DialogResult.No)
+            {
+                MessageBox.Show("Usuario não exluido!");
+                desativaBotoes();
+                desativaCampos();
+                limpaCampos();
+                btnNovo.Enabled = true;
+                return;
+            }
+            else
+            {
+                conect.AbrirConexao();
+                sql = "DELETE FROM cliente WHERE id=@id";
+                cmd = new MySqlCommand(sql, conect.con);
+                cmd.Parameters.AddWithValue("@id", grid.CurrentRow.Cells[0].Value);
+                cmd.ExecuteNonQuery();
+                conect.FecharConexao();
 
-            desativaCampos();
-            limpaCampos();
-            desativaBotoes();
-            btnNovo.Enabled = true;
+                desativaCampos();
+                limpaCampos();
+                desativaBotoes();
+                btnNovo.Enabled = true;
 
-            ListarGD();
+                ListarGD();
+            }
+
+            
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
