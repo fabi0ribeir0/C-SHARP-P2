@@ -139,8 +139,7 @@ namespace Projeto01
             {
                 MessageBox.Show($"O Nome {txtNome.Text} já foi cadastrado");
                 return;
-            }
-            
+            }            
             sql = "INSERT INTO cliente (nome, endereço, cpf, telefone) VALUES (@nome, @endereço, @cpf, @telefone)";
             cmd = new MySqlCommand(sql, conect.con);
             cmd.Parameters.AddWithValue("@nome", txtNome.Text);
@@ -154,7 +153,6 @@ namespace Projeto01
             desativaCampos();
             limpaCampos();
             btnNovo.Enabled = true;
-
             ListarGD();
         }
 
