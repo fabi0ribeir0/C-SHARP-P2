@@ -59,9 +59,17 @@ namespace Projeto01
         private void BuscarNome() // Metodo para buscar nome no banco de dados
         {
             conect.AbrirConexao();
-            sql = "SELECT * FROM cliente WHERE nome LIKE  @nome ORDER BY nome ASC"; // LIKE, busca nome por aproximação
+            sql = "SELECT * FROM cliente WHERE nome LIKE @nome ORDER BY nome ASC"; // LIKE, busca nome por aproximação
             cmd = new MySqlCommand(sql, conect.con);
-            cmd.Parameters.AddWithValue("@nome", )
+            cmd.Parameters.AddWithValue("@nome", txtBusca.Text + "%");
+            MySqlDataAdapter da = new MySqlDataAdapter();
+            da.SelectCommand = cmd;
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            grid.DataSource = dt;
+            conect.FecharConexao();
+
+            FormatarGD();
         }
 
         private void ativaBotoes()
@@ -272,6 +280,11 @@ namespace Projeto01
             txtEndereco.Text = grid.CurrentRow.Cells[2].Value.ToString();
             mskCpf.Text = grid.CurrentRow.Cells[3].Value.ToString();
             mskTel.Text = grid.CurrentRow.Cells[4].Value.ToString();
+        }
+
+        private void txtBusca_TextChanged(object sender, EventArgs e)
+        {
+            BuscarNome();
         }
     }
 }

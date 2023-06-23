@@ -233,6 +233,7 @@
             this.txtBusca.Name = "txtBusca";
             this.txtBusca.Size = new System.Drawing.Size(334, 20);
             this.txtBusca.TabIndex = 15;
+            this.txtBusca.TextChanged += new System.EventHandler(this.txtBusca_TextChanged);
             // 
             // label10
             // 
