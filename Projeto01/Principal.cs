@@ -56,6 +56,14 @@ namespace Projeto01
         string sql;
         MySqlCommand cmd;
 
+        private void BuscarNome() // Metodo para buscar nome no banco de dados
+        {
+            conect.AbrirConexao();
+            sql = "SELECT * FROM cliente WHERE nome LIKE  @nome ORDER BY nome ASC"; // LIKE, busca nome por aproximação
+            cmd = new MySqlCommand(sql, conect.con);
+            cmd.Parameters.AddWithValue("@nome", )
+        }
+
         private void ativaBotoes()
         {
             btnNovo.Enabled = true;
