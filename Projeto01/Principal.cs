@@ -20,7 +20,9 @@ namespace Projeto01
             grid.Columns[2].HeaderText = "Endereço";
             grid.Columns[3].HeaderText = "CPF";
             grid.Columns[4].HeaderText = "Tel.";
+            grid.Columns[5].HeaderText = "Foto";
             grid.Columns[4].Width += 3;
+            grid.Columns[5].Visible = false;
         }
 
         private void ListarGD()
