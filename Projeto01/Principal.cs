@@ -7,6 +7,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 using System.Windows.Forms;
 
 namespace Projeto01
@@ -55,7 +56,7 @@ namespace Projeto01
         }
 
         Conexao conect = new Conexao();
-        string sql;
+        string sql, foto;
         MySqlCommand cmd;
 
         private void BuscarNome() // Metodo para buscar nome no banco de dados
@@ -287,6 +288,17 @@ namespace Projeto01
         private void txtBusca_TextChanged(object sender, EventArgs e)
         {
             BuscarNome();
+        }
+
+        private void btnFoto_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog dialog = new OpenFileDialog();
+            dialog.Filter = "Imagens(*jpg; *.png)|*.jpg;*.png";
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                foto = dialog.FileName.ToString(); // pega o caminho da imagem
+                pctFoto.ImageLocation = foto;
+            }
         }
     }
 }
