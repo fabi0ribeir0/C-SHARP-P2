@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -89,7 +90,19 @@ namespace Projeto01
             btnSalvar.Enabled = false;
             btnExcluir.Enabled = false;
             btnNovo.Enabled = false;
-            btnAlterar.Enabled= false;
+            btnAlterar.Enabled = false;
+        }
+
+        private byte[] img() //Metodo para enviar imagem para o banco de dados
+        {
+            byte[] imagemByte = null;
+            FileStream fs = new FileStream(foto, FileMode.Open, FileAccess.Read);
+
+            BinaryReader br = new BinaryReader(fs);
+
+            imagemByte = br.ReadBytes((int)fs.Length);
+
+            return imagemByte;
         }
 
         private void ativaCampos()
@@ -159,12 +172,13 @@ namespace Projeto01
                 MessageBox.Show($"O Nome {txtNome.Text} já foi cadastrado");
                 return;
             }            
-            sql = "INSERT INTO cliente (nome, endereço, cpf, telefone) VALUES (@nome, @endereço, @cpf, @telefone)";
+            sql = "INSERT INTO cliente (nome, endereço, cpf, telefone, foto) VALUES (@nome, @endereço, @cpf, @telefone, @foto)";
             cmd = new MySqlCommand(sql, conect.con);
             cmd.Parameters.AddWithValue("@nome", txtNome.Text);
             cmd.Parameters.AddWithValue("@endereço", txtEndereco.Text);
             cmd.Parameters.AddWithValue("@cpf", mskCpf.Text);
             cmd.Parameters.AddWithValue("@telefone", mskTel.Text);
+            cmd.Parameters.AddWithValue("@goto", pctFoto.Image); //metodo img
             cmd.ExecuteNonQuery();
             conect.FecharConexao();
 

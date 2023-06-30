@@ -51,7 +51,6 @@
             this.btnAlterar = new System.Windows.Forms.Button();
             this.grid = new System.Windows.Forms.DataGridView();
             this.pctFoto = new System.Windows.Forms.PictureBox();
-            this.label11 = new System.Windows.Forms.Label();
             this.btnFoto = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.grid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pctFoto)).BeginInit();
@@ -277,18 +276,9 @@
             this.pctFoto.TabIndex = 19;
             this.pctFoto.TabStop = false;
             // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(690, 136);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(31, 13);
-            this.label11.TabIndex = 20;
-            this.label11.Text = "Foto:";
-            // 
             // btnFoto
             // 
-            this.btnFoto.Location = new System.Drawing.Point(672, 154);
+            this.btnFoto.Location = new System.Drawing.Point(672, 136);
             this.btnFoto.Name = "btnFoto";
             this.btnFoto.Size = new System.Drawing.Size(49, 41);
             this.btnFoto.TabIndex = 21;
@@ -303,7 +293,6 @@
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.ClientSize = new System.Drawing.Size(891, 486);
             this.Controls.Add(this.btnFoto);
-            this.Controls.Add(this.label11);
             this.Controls.Add(this.pctFoto);
             this.Controls.Add(this.grid);
             this.Controls.Add(this.btnAlterar);
@@ -363,7 +352,6 @@
         private System.Windows.Forms.Button btnAlterar;
         private System.Windows.Forms.DataGridView grid;
         private System.Windows.Forms.PictureBox pctFoto;
-        private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Button btnFoto;
     }
 }
