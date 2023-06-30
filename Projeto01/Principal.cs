@@ -96,6 +96,12 @@ namespace Projeto01
         private byte[] img() //Metodo para enviar imagem para o banco de dados
         {
             byte[] imagemByte = null;
+
+            if (String.IsNullOrEmpty(foto))
+            {
+                foto = @"C:\Users\Fabio\Documents\Estudos\C-SHARP-P2\IMAGENS PARA PROJETOS\NULL.png";
+            }
+
             FileStream fs = new FileStream(foto, FileMode.Open, FileAccess.Read);
 
             BinaryReader br = new BinaryReader(fs);
@@ -178,7 +184,7 @@ namespace Projeto01
             cmd.Parameters.AddWithValue("@endereço", txtEndereco.Text);
             cmd.Parameters.AddWithValue("@cpf", mskCpf.Text);
             cmd.Parameters.AddWithValue("@telefone", mskTel.Text);
-            cmd.Parameters.AddWithValue("@goto", pctFoto.Image); //metodo img
+            cmd.Parameters.AddWithValue("@foto", img()); //metodo img
             cmd.ExecuteNonQuery();
             conect.FecharConexao();
 
