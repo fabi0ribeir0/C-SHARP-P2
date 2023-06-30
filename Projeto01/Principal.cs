@@ -57,8 +57,9 @@ namespace Projeto01
         }
 
         Conexao conect = new Conexao();
-        string sql, foto;
-        MySqlCommand cmd;
+        string sql;
+        string foto = @"C:\Users\Fabio\Documents\Estudos\C-SHARP-P2\IMAGENS PARA PROJETOS\NULL.png";
+        MySqlCommand cmd;        
 
         private void BuscarNome() // Metodo para buscar nome no banco de dados
         {
@@ -97,11 +98,6 @@ namespace Projeto01
         {
             byte[] imagemByte = null;
 
-            if (String.IsNullOrEmpty(foto))
-            {
-                foto = @"C:\Users\Fabio\Documents\Estudos\C-SHARP-P2\IMAGENS PARA PROJETOS\NULL.png";
-            }
-
             FileStream fs = new FileStream(foto, FileMode.Open, FileAccess.Read);
 
             BinaryReader br = new BinaryReader(fs);
@@ -135,6 +131,7 @@ namespace Projeto01
             txtEndereco.Clear();
             mskCpf.Clear();
             mskTel.Clear();
+            foto = @"C:\Users\Fabio\Documents\Estudos\C-SHARP-P2\IMAGENS PARA PROJETOS\NULL.png";
         }
 
         private void btnNovo_Click(object sender, EventArgs e)
@@ -287,6 +284,7 @@ namespace Projeto01
 
         private void FrmPrincipal_Load(object sender, EventArgs e)
         {
+            pctFoto.ImageLocation = foto;
             ListarGD();
         }
 
