@@ -58,7 +58,7 @@ namespace Projeto01
 
         Conexao conect = new Conexao();
         string sql;
-        string foto = @"C:\Users\Fabio\Documents\Estudos\C-SHARP-P2\IMAGENS PARA PROJETOS\NULL.png";
+        string foto = "ft/NULL.png";
         MySqlCommand cmd;        
 
         private void BuscarNome() // Metodo para buscar nome no banco de dados
