@@ -54,11 +54,18 @@ namespace Projeto01
             btnCancelar.Enabled = false;
             btnExcluir.Enabled = false;
             btnAlterar.Enabled = false;
+            btnFoto.Enabled = false;
+        }
+
+        private void limpaFoto()
+        {
+            pctFoto.Image = Properties.Resources.NULL;
+            foto = "ft/NULL.png";
         }
 
         Conexao conect = new Conexao();
         string sql;
-        string foto = "ft/NULL.png";
+        string foto;
         MySqlCommand cmd;        
 
         private void BuscarNome() // Metodo para buscar nome no banco de dados
@@ -84,6 +91,7 @@ namespace Projeto01
             btnCancelar.Enabled = true;
             btnExcluir.Enabled = false;
             btnAlterar.Enabled = true;
+            btnFoto.Enabled = true;
         }
         private void desativaBotoes()
         {
@@ -92,6 +100,7 @@ namespace Projeto01
             btnExcluir.Enabled = false;
             btnNovo.Enabled = false;
             btnAlterar.Enabled = false;
+            btnFoto.Enabled = false;
         }
 
         private byte[] img() //Metodo para enviar imagem para o banco de dados
@@ -131,7 +140,6 @@ namespace Projeto01
             txtEndereco.Clear();
             mskCpf.Clear();
             mskTel.Clear();
-            foto = @"C:\Users\Fabio\Documents\Estudos\C-SHARP-P2\IMAGENS PARA PROJETOS\NULL.png";
         }
 
         private void btnNovo_Click(object sender, EventArgs e)
@@ -141,6 +149,7 @@ namespace Projeto01
             btnAlterar.Enabled = false;
             btnNovo.Enabled = false;
             txtNome.Focus();
+            limpaFoto();
         }
 
         private void btnSalvar_Click(object sender, EventArgs e)
@@ -190,6 +199,7 @@ namespace Projeto01
             limpaCampos();
             btnNovo.Enabled = true;
             ListarGD();
+            limpaFoto();
         }
 
         private void btnExcluir_Click(object sender, EventArgs e)
@@ -231,6 +241,7 @@ namespace Projeto01
             desativaCampos();
             limpaCampos();
             btnNovo.Enabled = true;
+            limpaFoto();
         }
 
         private void mskCpf_KeyPress(object sender, KeyPressEventArgs e)
@@ -284,7 +295,7 @@ namespace Projeto01
 
         private void FrmPrincipal_Load(object sender, EventArgs e)
         {
-            pctFoto.ImageLocation = foto;
+            limpaFoto();
             ListarGD();
         }
 
@@ -311,7 +322,7 @@ namespace Projeto01
         private void btnFoto_Click(object sender, EventArgs e)
         {
             OpenFileDialog dialog = new OpenFileDialog();
-            dialog.Filter = "Imagens(*jpg; *.png)|*.jpg;*.png";
+            dialog.Filter = "Imagens(*jpg; *.png)|*.jpg;*.jpeg;*.png";
             if (dialog.ShowDialog() == DialogResult.OK)
             {
                 foto = dialog.FileName.ToString(); // pega o caminho da imagem

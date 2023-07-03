@@ -269,6 +269,7 @@
             // 
             // pctFoto
             // 
+            this.pctFoto.InitialImage = global::Projeto01.Properties.Resources.NULL;
             this.pctFoto.Location = new System.Drawing.Point(727, 136);
             this.pctFoto.Name = "pctFoto";
             this.pctFoto.Size = new System.Drawing.Size(128, 126);
