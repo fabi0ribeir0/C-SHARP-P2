@@ -1,4 +1,5 @@
-﻿using MySql.Data.MySqlClient;
+﻿using Google.Protobuf.WellKnownTypes;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -275,13 +276,14 @@ namespace Projeto01
             }
 
             conect.AbrirConexao();
-            sql = "UPDATE cliente SET nome=@nome, endereço=@endereço, cpf=@cpf, telefone=@telefone WHERE id=@id";
+            sql = "UPDATE cliente SET nome=@nome, endereço=@endereço, cpf=@cpf, telefone=@telefone, foto=@foto WHERE id=@id";
             cmd = new MySqlCommand(sql, conect.con);
             cmd.Parameters.AddWithValue("@id", grid.CurrentRow.Cells[0].Value);
             cmd.Parameters.AddWithValue("@nome", txtNome.Text);
             cmd.Parameters.AddWithValue("@endereço", txtEndereco.Text);
             cmd.Parameters.AddWithValue("@cpf", mskCpf.Text);
             cmd.Parameters.AddWithValue("@telefone", mskTel.Text);
+            cmd.Parameters.AddWithValue("@foto", img());
             cmd.ExecuteNonQuery();
             conect.FecharConexao();
 
@@ -301,17 +303,26 @@ namespace Projeto01
 
         private void grid_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            ativaBotoes();
-            btnNovo.Enabled=false;
-            btnSalvar.Enabled=false;
-            btnAlterar.Enabled=true;
-            btnExcluir.Enabled=true;
-            ativaCampos();
+            if (e.RowIndex > -1)
+            {
+                limpaFoto();
+                ativaBotoes();
+                btnNovo.Enabled = false;
+                btnSalvar.Enabled = false;
+                btnAlterar.Enabled = true;
+                btnExcluir.Enabled = true;
+                ativaCampos();
 
-            txtNome.Text = grid.CurrentRow.Cells[1].Value.ToString();
-            txtEndereco.Text = grid.CurrentRow.Cells[2].Value.ToString();
-            mskCpf.Text = grid.CurrentRow.Cells[3].Value.ToString();
-            mskTel.Text = grid.CurrentRow.Cells[4].Value.ToString();
+                txtNome.Text = grid.CurrentRow.Cells[1].Value.ToString();
+                txtEndereco.Text = grid.CurrentRow.Cells[2].Value.ToString();
+                mskCpf.Text = grid.CurrentRow.Cells[3].Value.ToString();
+                mskTel.Text = grid.CurrentRow.Cells[4].Value.ToString();
+
+                byte[] imagem = (byte[])grid.Rows[e.RowIndex].Cells[5].Value;
+                MemoryStream ms = new MemoryStream(imagem);
+                pctFoto.Image = Image.FromStream(ms);
+            }
+            else return;
         }
 
         private void txtBusca_TextChanged(object sender, EventArgs e)
