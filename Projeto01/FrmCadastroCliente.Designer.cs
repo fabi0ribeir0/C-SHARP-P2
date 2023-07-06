@@ -1,6 +1,6 @@
 ﻿namespace Projeto01
 {
-    partial class FrmPrincipal
+    partial class FrmCadastroCliente
     {
         /// <summary>
         /// Required designer variable.
@@ -102,6 +102,8 @@
             // 
             // txtEndereco
             // 
+            this.txtEndereco.BackColor = System.Drawing.SystemColors.Window;
+            this.txtEndereco.ForeColor = System.Drawing.SystemColors.WindowFrame;
             this.txtEndereco.Location = new System.Drawing.Point(31, 154);
             this.txtEndereco.MaxLength = 200;
             this.txtEndereco.Name = "txtEndereco";
@@ -287,7 +289,7 @@
             this.btnFoto.UseVisualStyleBackColor = true;
             this.btnFoto.Click += new System.EventHandler(this.btnFoto_Click);
             // 
-            // FrmPrincipal
+            // FrmCadastroCliente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -317,9 +319,9 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lblNome);
-            this.Name = "FrmPrincipal";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Principal";
+            this.Name = "FrmCadastroCliente";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Text = "Cadastro";
             this.Load += new System.EventHandler(this.FrmPrincipal_Load);
             ((System.ComponentModel.ISupportInitialize)(this.grid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pctFoto)).EndInit();

@@ -14,9 +14,9 @@ using System.Windows.Forms;
 
 namespace Projeto01
 {
-    public partial class FrmPrincipal : Form
+    public partial class FrmCadastroCliente : Form
     {
-        public FrmPrincipal()
+        public FrmCadastroCliente()
         {
             InitializeComponent();
             txtNome.Enabled = false;
@@ -35,7 +35,7 @@ namespace Projeto01
         //********************************
         Conexao conect = new Conexao();
         string sql;
-        string foto;
+        string foto, cpfAntigo;
         string alterouFoto = "nao";
         MySqlCommand cmd;
         //*******************************
@@ -193,16 +193,6 @@ namespace Projeto01
                 MessageBox.Show($"O Nome {txtNome.Text} já foi cadastrado");
                 return;
             }
-            
-            //sql = "SELECT COUNT(*) FROM cliente WHERE cpf = @cpf";
-            //cmd = new MySqlCommand(sql, conect.con);
-            //cmd.Parameters.AddWithValue("@cpf", mskCpf.Text);
-            //if (count > 0)
-            //{
-            //    MessageBox.Show($"O CPF {mskCpf.Text} Já foi cadastran!");
-            //    return;
-            //}
-            //não funcionou como esperado
 
             sql = "INSERT INTO cliente (nome, endereço, cpf, telefone, foto) VALUES (@nome, @endereço, @cpf, @telefone, @foto)";
             cmd = new MySqlCommand(sql, conect.con);
@@ -226,7 +216,6 @@ namespace Projeto01
                 mskCpf.Focus();
                 return;
             }
-
             cmd.ExecuteNonQuery();
             conect.FecharConexao();
 
@@ -335,7 +324,23 @@ namespace Projeto01
                 cmd.Parameters.AddWithValue("@telefone", mskTel.Text);
             }
 
-            conect.AbrirConexao();
+            if (mskCpf.Text != cpfAntigo)
+            {
+                MySqlCommand cmdverificar;
+                cmdverificar = new MySqlCommand("SELECT * FROM cliente WHERE cpf=@cpf", conect.con);
+                MySqlDataAdapter da = new MySqlDataAdapter();
+                da.SelectCommand = cmdverificar;
+                cmdverificar.Parameters.AddWithValue("@cpf", mskCpf.Text);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                if (dt.Rows.Count > 0)
+                {
+                    MessageBox.Show($"CPF {mskCpf.Text} já cadastrado");
+                    mskCpf.Text = "";
+                    mskCpf.Focus();
+                    return;
+                }
+            }
 
             cmd.ExecuteNonQuery();
             conect.FecharConexao();
@@ -371,6 +376,7 @@ namespace Projeto01
                 txtEndereco.Text = grid.CurrentRow.Cells[2].Value.ToString();
                 mskCpf.Text = grid.CurrentRow.Cells[3].Value.ToString();
                 mskTel.Text = grid.CurrentRow.Cells[4].Value.ToString();
+                cpfAntigo = grid.CurrentRow.Cells[3].Value.ToString();
 
                 byte[] imagem = (byte[])grid.Rows[e.RowIndex].Cells[5].Value;
                 MemoryStream ms = new MemoryStream(imagem);
