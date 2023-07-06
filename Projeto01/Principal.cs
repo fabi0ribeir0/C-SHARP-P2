@@ -16,6 +16,32 @@ namespace Projeto01
 {
     public partial class FrmPrincipal : Form
     {
+        public FrmPrincipal()
+        {
+            InitializeComponent();
+            txtNome.Enabled = false;
+            txtEndereco.Enabled = false;
+            mskCpf.Enabled = false;
+            mskTel.Enabled = false;
+            btnCancelar.Enabled = false;
+            btnSalvar.Enabled = false;
+            btnCancelar.Enabled = false;
+            btnExcluir.Enabled = false;
+            btnAlterar.Enabled = false;
+            btnFoto.Enabled = false;
+        }
+
+        //Minhas Variaveis globais
+        //********************************
+        Conexao conect = new Conexao();
+        string sql;
+        string foto;
+        string alterouFoto = "nao";
+        MySqlCommand cmd;
+        //*******************************
+
+        //Meus Metodos
+        //*****************************************************************************************************
         private void FormatarGD()
         {
             grid.Columns[0].HeaderText = "Código";
@@ -43,31 +69,12 @@ namespace Projeto01
             FormatarGD();
         }
 
-        public FrmPrincipal()
-        {
-            InitializeComponent();
-            txtNome.Enabled = false;
-            txtEndereco.Enabled = false;
-            mskCpf.Enabled = false;
-            mskTel.Enabled = false;
-            btnCancelar.Enabled = false;
-            btnSalvar.Enabled = false;
-            btnCancelar.Enabled = false;
-            btnExcluir.Enabled = false;
-            btnAlterar.Enabled = false;
-            btnFoto.Enabled = false;
-        }
-
         private void limpaFoto()
         {
             pctFoto.Image = Properties.Resources.NULL;
             foto = "ft/NULL.png";
+            alterouFoto = "nao";
         }
-
-        Conexao conect = new Conexao();
-        string sql;
-        string foto;
-        MySqlCommand cmd;        
 
         private void BuscarNome() // Metodo para buscar nome no banco de dados
         {
@@ -142,6 +149,7 @@ namespace Projeto01
             mskCpf.Clear();
             mskTel.Clear();
         }
+        //*******************************************************************************************************
 
         private void btnNovo_Click(object sender, EventArgs e)
         {
@@ -184,14 +192,41 @@ namespace Projeto01
             {
                 MessageBox.Show($"O Nome {txtNome.Text} já foi cadastrado");
                 return;
-            }            
+            }
+            
+            //sql = "SELECT COUNT(*) FROM cliente WHERE cpf = @cpf";
+            //cmd = new MySqlCommand(sql, conect.con);
+            //cmd.Parameters.AddWithValue("@cpf", mskCpf.Text);
+            //if (count > 0)
+            //{
+            //    MessageBox.Show($"O CPF {mskCpf.Text} Já foi cadastran!");
+            //    return;
+            //}
+            //não funcionou como esperado
+
             sql = "INSERT INTO cliente (nome, endereço, cpf, telefone, foto) VALUES (@nome, @endereço, @cpf, @telefone, @foto)";
             cmd = new MySqlCommand(sql, conect.con);
             cmd.Parameters.AddWithValue("@nome", txtNome.Text);
             cmd.Parameters.AddWithValue("@endereço", txtEndereco.Text);
-            cmd.Parameters.AddWithValue("@cpf", mskCpf.Text);
+            cmd.Parameters.AddWithValue("@cpf", mskCpf.Text);            
             cmd.Parameters.AddWithValue("@telefone", mskTel.Text);
             cmd.Parameters.AddWithValue("@foto", img()); //metodo img
+
+            MySqlCommand cmdverificar;
+            cmdverificar = new MySqlCommand("SELECT * FROM cliente WHERE cpf=@cpf", conect.con);
+            MySqlDataAdapter da = new MySqlDataAdapter();
+            da.SelectCommand = cmdverificar;
+            cmdverificar.Parameters.AddWithValue("@cpf", mskCpf.Text);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            if (dt.Rows.Count > 0)
+            {
+                MessageBox.Show($"CPF {mskCpf.Text} já cadastrado");
+                mskCpf.Text = "";
+                mskCpf.Focus();
+                return;
+            }
+
             cmd.ExecuteNonQuery();
             conect.FecharConexao();
 
@@ -230,6 +265,7 @@ namespace Projeto01
                 desativaBotoes();
                 btnNovo.Enabled = true;
 
+                limpaFoto();
                 ListarGD();
             }
 
@@ -276,20 +312,38 @@ namespace Projeto01
             }
 
             conect.AbrirConexao();
-            sql = "UPDATE cliente SET nome=@nome, endereço=@endereço, cpf=@cpf, telefone=@telefone, foto=@foto WHERE id=@id";
-            cmd = new MySqlCommand(sql, conect.con);
-            cmd.Parameters.AddWithValue("@id", grid.CurrentRow.Cells[0].Value);
-            cmd.Parameters.AddWithValue("@nome", txtNome.Text);
-            cmd.Parameters.AddWithValue("@endereço", txtEndereco.Text);
-            cmd.Parameters.AddWithValue("@cpf", mskCpf.Text);
-            cmd.Parameters.AddWithValue("@telefone", mskTel.Text);
-            cmd.Parameters.AddWithValue("@foto", img());
+
+            if (alterouFoto == "sim")
+            {
+                sql = "UPDATE cliente SET nome=@nome, endereço=@endereço, cpf=@cpf, telefone=@telefone, foto=@foto WHERE id=@id";
+                cmd = new MySqlCommand(sql, conect.con);
+                cmd.Parameters.AddWithValue("@id", grid.CurrentRow.Cells[0].Value);
+                cmd.Parameters.AddWithValue("@nome", txtNome.Text);
+                cmd.Parameters.AddWithValue("@endereço", txtEndereco.Text);
+                cmd.Parameters.AddWithValue("@cpf", mskCpf.Text);
+                cmd.Parameters.AddWithValue("@telefone", mskTel.Text);
+                cmd.Parameters.AddWithValue("@foto", img());
+            }
+            else if (alterouFoto == "nao")
+            {
+                sql = "UPDATE cliente SET nome=@nome, endereço=@endereço, cpf=@cpf, telefone=@telefone WHERE id=@id";
+                cmd = new MySqlCommand(sql, conect.con);
+                cmd.Parameters.AddWithValue("@id", grid.CurrentRow.Cells[0].Value);
+                cmd.Parameters.AddWithValue("@nome", txtNome.Text);
+                cmd.Parameters.AddWithValue("@endereço", txtEndereco.Text);
+                cmd.Parameters.AddWithValue("@cpf", mskCpf.Text);
+                cmd.Parameters.AddWithValue("@telefone", mskTel.Text);
+            }
+
+            conect.AbrirConexao();
+
             cmd.ExecuteNonQuery();
             conect.FecharConexao();
 
             desativaBotoes();
             desativaCampos();
             limpaCampos();
+            limpaFoto();
             btnNovo.Enabled = true;
 
             ListarGD();
@@ -338,6 +392,7 @@ namespace Projeto01
             {
                 foto = dialog.FileName.ToString(); // pega o caminho da imagem
                 pctFoto.ImageLocation = foto;
+                alterouFoto = "sim";
             }
         }
     }
