@@ -63,6 +63,26 @@ namespace Projeto01.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _101081_20190822154701 {
+            get {
+                object obj = ResourceManager.GetObject("101081_20190822154701", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap computador {
+            get {
+                object obj = ResourceManager.GetObject("computador", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap NULL {
             get {
                 object obj = ResourceManager.GetObject("NULL", resourceCulture);
