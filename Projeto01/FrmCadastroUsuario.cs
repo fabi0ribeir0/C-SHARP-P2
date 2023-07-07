@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MySql.Data.MySqlClient;
 
 namespace Projeto01
 {
@@ -15,6 +16,53 @@ namespace Projeto01
         public FrmCadastroUsuario()
         {
             InitializeComponent();
+        }
+
+        Conexao conect = new Conexao();
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void btnCadastrar_Click(object sender, EventArgs e)
+        {
+            if (txtSenha.Text != txtConfirmaSenha.Text)
+            {
+                MessageBox.Show("As senhas não correspodem, Digite novamente!");
+                txtConfirmaSenha.Clear();
+                txtSenha.Clear();
+                txtSenha.Focus();
+                return;
+            }
+
+            conect.AbrirConexao();
+            MySqlCommand cmd = new MySqlCommand("INSERT INTO login (nome, senha) values (@nome, @senha)", conect.con);
+            cmd.Parameters.AddWithValue("@nome", txtUsuario.Text);
+            cmd.Parameters.AddWithValue("@senha", txtSenha.Text);
+
+            MySqlCommand verifica = new MySqlCommand("SELECT * FROM login WHERE nome=@nome", conect.con);
+            MySqlDataAdapter da = new MySqlDataAdapter();
+            da.SelectCommand = verifica;
+            verifica.Parameters.AddWithValue("@nome", txtUsuario.Text);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            if (dt.Rows.Count > 0)
+            {
+                MessageBox.Show("Usuario já cadastrado!");
+                txtUsuario.Clear();
+                txtUsuario.Focus();
+                return;
+            }
+
+
+            cmd.ExecuteNonQuery();
+            conect.FecharConexao();
+            txtUsuario.Clear();
+            txtSenha.Clear();
+            txtConfirmaSenha.Clear();
+            MessageBox.Show($"Usuário {txtUsuario.Text} cadastrado!");
+            txtUsuario.Focus();
         }
     }
 }

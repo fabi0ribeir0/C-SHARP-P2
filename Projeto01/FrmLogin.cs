@@ -35,7 +35,7 @@ namespace Projeto01
         private void btnEntrar_Click(object sender, EventArgs e)
         {
             conect.AbrirConexao();
-            sql = "SELECT COUNT * FROM login WHERE nome=@nome AND senha=@senha"; 
+            sql = "SELECT * FROM login WHERE nome=@nome AND senha=@senha"; 
             cmd = new MySqlCommand(sql, conect.con);
             MySqlDataAdapter da = new MySqlDataAdapter();
             da.SelectCommand = cmd;
@@ -49,11 +49,19 @@ namespace Projeto01
                 txtLogin.Clear();
                 txtSenha.Clear();
                 txtLogin.Focus();
+                return;
             }
-
-            MessageBox.Show(dt.Rows.Count.ToString());
-
-
+            FrmMenu menu = new FrmMenu();
+            menu.ShowDialog();
+            this.Close();
         }
+
+        private void txtSenha_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                btnEntrar_Click(sender, e);
+            }
+        }    
     }
 }
