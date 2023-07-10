@@ -35,7 +35,13 @@ namespace Projeto01
                 txtSenha.Focus();
                 return;
             }
-
+            if (string.IsNullOrEmpty(txtUsuario.Text) || string.IsNullOrEmpty(txtSenha.Text))
+            {
+                MessageBox.Show("Digite um nome de usuário!");
+                txtUsuario.Clear();
+                txtUsuario.Focus();
+                return;
+            }//Verifica se não está nulo os campos de usuario ou senha
             conect.AbrirConexao();
             MySqlCommand cmd = new MySqlCommand("INSERT INTO login (nome, senha) values (@nome, @senha)", conect.con);
             cmd.Parameters.AddWithValue("@nome", txtUsuario.Text);

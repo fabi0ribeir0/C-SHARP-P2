@@ -34,26 +34,53 @@ namespace Projeto01
 
         private void btnEntrar_Click(object sender, EventArgs e)
         {
-            conect.AbrirConexao();
-            sql = "SELECT * FROM login WHERE nome=@nome AND senha=@senha"; 
-            cmd = new MySqlCommand(sql, conect.con);
-            MySqlDataAdapter da = new MySqlDataAdapter();
-            da.SelectCommand = cmd;
-            cmd.Parameters.AddWithValue("@nome", txtLogin.Text);
-            cmd.Parameters.AddWithValue("@senha", txtSenha.Text);
-            DataTable dt = new DataTable();
-            da.Fill(dt);
-            if (dt.Rows.Count < 1)
+            //Meu metodo (funcionou)
             {
-                MessageBox.Show("Login invalido");
-                txtLogin.Clear();
-                txtSenha.Clear();
-                txtLogin.Focus();
-                return;
+                //conect.AbrirConexao();
+                //sql = "SELECT * FROM login WHERE nome=@nome AND senha=@senha"; 
+                //cmd = new MySqlCommand(sql, conect.con);
+                //MySqlDataAdapter da = new MySqlDataAdapter();
+                //da.SelectCommand = cmd;
+                //cmd.Parameters.AddWithValue("@nome", txtLogin.Text);
+                //cmd.Parameters.AddWithValue("@senha", txtSenha.Text);
+                //DataTable dt = new DataTable();
+                //da.Fill(dt);
+                //if (dt.Rows.Count < 1)
+                //{
+                //    MessageBox.Show("Login invalido");
+                //    txtLogin.Clear();
+                //    txtSenha.Clear();
+                //    txtLogin.Focus();
+                //    return;
+                //}
+                //FrmMenu menu = new FrmMenu();
+                //menu.ShowDialog();
+                //this.Close();
             }
-            FrmMenu menu = new FrmMenu();
-            menu.ShowDialog();
-            this.Close();
+
+            try
+            {
+                conect.AbrirConexao();
+                MySqlCommand cmdverificar;
+                MySqlDataReader reader;
+                cmdverificar = new MySqlCommand("SELECT * FROM login WHERE nome=@nome AND senha=@senha", conect.con);
+                MySqlDataAdapter da = new MySqlDataAdapter();
+                da.SelectCommand = cmdverificar;
+                cmdverificar.Parameters.AddWithValue("@nome", txtLogin.Text);
+                cmdverificar.Parameters.AddWithValue("@senha", txtSenha.Text);
+                reader = cmdverificar.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    FrmMenu frm = new FrmMenu();
+                    frm.ShowDialog();
+                    this.Close();
+                }
+            }
+            catch (Exception)
+            {
+
+                MessageBox.Show("Não foi possivel se conectar ao database!");
+            }
         }
 
         private void txtSenha_KeyDown(object sender, KeyEventArgs e)
