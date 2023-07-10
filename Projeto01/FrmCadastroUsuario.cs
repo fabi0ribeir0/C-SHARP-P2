@@ -55,7 +55,6 @@ namespace Projeto01
                 return;
             }
 
-
             cmd.ExecuteNonQuery();
             conect.FecharConexao();
             txtUsuario.Clear();
