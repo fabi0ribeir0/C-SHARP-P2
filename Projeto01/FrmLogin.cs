@@ -71,7 +71,8 @@ namespace Projeto01
                 reader = cmdverificar.ExecuteReader();
                 if (reader.HasRows)
                 {
-                    FrmMenu frm = new FrmMenu();
+                    FrmMenu frm = new FrmMenu();                    
+                    this.Hide();
                     frm.ShowDialog();
                     this.Close();
                 }
