@@ -76,6 +76,13 @@ namespace Projeto01
                     frm.ShowDialog();
                     this.Close();
                 }
+                else
+                {
+                    MessageBox.Show("Usuário Invalido");
+                    txtLogin.Clear();
+                    txtSenha.Clear();
+                    txtLogin.Focus();
+                }
             }
             catch (Exception)
             {
