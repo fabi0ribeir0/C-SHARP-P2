@@ -10,6 +10,7 @@ namespace Projeto01
 {
     internal class Conexao
     {
+        //Conexão LOCAL
         public string conect = "SERVER=localhost;DATABASE=aula;UID=root;PWD=;PORT=";
 
         public MySqlConnection con = null;
