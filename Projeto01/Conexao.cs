@@ -10,15 +10,12 @@ namespace Projeto01
 {
     internal class Conexao
     {
-        //Conexão LOCAL
-        
-        public string conect = "SERVER=localhost;DATABASE=aula;UID=root;PWD=;PORT=";
-       
+        //Conexão LOCAL        
+        //public string conect = "SERVER=localhost;DATABASE=aula;UID=root;PWD=;PORT=";       
 
-        //Conexão Remota
-        /*
+        //Conexão Remota        
         public string conect = "SERVER=mysql247.umbler.com;DATABASE=aula;UID=csharpaula;PWD=fabio123;PORT=41890;";
-        */
+        
 
         public MySqlConnection con = null;
 
