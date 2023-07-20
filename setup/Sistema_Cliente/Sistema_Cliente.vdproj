@@ -27,6 +27,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_1D532649B2474AFAB50F2C97C00FE2E5"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_3FD57273B66D3E68B2908ABC6EE25F1D"
         "OwnerKey" = "8:_FB5498353D5E2CEE9318BB58F29D0519"
         "MsmSig" = "8:_UNDEFINED"
@@ -423,6 +429,26 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_1D532649B2474AFAB50F2C97C00FE2E5"
+            {
+            "SourcePath" = "8:..\\..\\..\\html-css\\favicon.ico"
+            "TargetName" = "8:favicon.ico"
+            "Tag" = "8:"
+            "Folder" = "8:_4FE8D9A67D6A45EBA3544E7A4F2FEB87"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_3FD57273B66D3E68B2908ABC6EE25F1D"
@@ -865,7 +891,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Sistema_Cliente"
         "ProductCode" = "8:{E6ACC5E6-8F13-470F-88E8-92E9A2789968}"
-        "PackageCode" = "8:{B2FE1B82-274A-4EF1-80A9-5A8E1D7B82C8}"
+        "PackageCode" = "8:{8EA7F036-0CF5-4269-B64C-AB4913D30552}"
         "UpgradeCode" = "8:{08DD70F0-CBC5-4218-A565-3F7C87E9B9CC}"
         "AspNetVersion" = "8:"
         "RestartWWWService" = "11:FALSE"
@@ -996,7 +1022,7 @@
             "Target" = "8:_9BA7910FF20C46729A9899F4789212B5"
             "Folder" = "8:_9B8F4ADAB4BB4314A747CE132C206F21"
             "WorkingFolder" = "8:_B120F6EB70C043B298F827087278381E"
-            "Icon" = "8:"
+            "Icon" = "8:_1D532649B2474AFAB50F2C97C00FE2E5"
             "Feature" = "8:"
             }
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_C952D3D6A8BA4898802D58A9B8052CD8"
@@ -1010,7 +1036,7 @@
             "Target" = "8:_9BA7910FF20C46729A9899F4789212B5"
             "Folder" = "8:_4FE8D9A67D6A45EBA3544E7A4F2FEB87"
             "WorkingFolder" = "8:_B120F6EB70C043B298F827087278381E"
-            "Icon" = "8:"
+            "Icon" = "8:_1D532649B2474AFAB50F2C97C00FE2E5"
             "Feature" = "8:"
             }
         }

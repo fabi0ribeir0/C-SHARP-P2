@@ -39,3 +39,4 @@ C:\Users\Fabio\Documents\Estudos\C-SHARP-P2\Projeto01\obj\Debug\Projeto01.FrmMen
 C:\Users\Fabio\Documents\Estudos\C-SHARP-P2\Projeto01\obj\Debug\Projeto01.FrmCadastroCliente.resources
 C:\Users\Fabio\Documents\Estudos\C-SHARP-P2\Projeto01\obj\Debug\Projeto01.FrmLogin.resources
 C:\Users\Fabio\Documents\Estudos\C-SHARP-P2\Projeto01\obj\Debug\Projeto01.FrmCadastroUsuario.resources
+C:\Users\Fabio\Documents\Estudos\C-SHARP-P2\Projeto01\obj\Debug\Projeto01.Relatorio.FrmCliente.resources

@@ -28,5 +28,11 @@ namespace Projeto01
             FrmCadastroUsuario frm = new FrmCadastroUsuario();
             frm.ShowDialog();
         }
+
+        private void relatórioDeClienteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Relatorio.FrmCliente frm = new Relatorio.FrmCliente();
+            frm.ShowDialog();
+        }
     }
 }

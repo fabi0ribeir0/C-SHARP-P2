@@ -11,11 +11,10 @@ namespace Projeto01
     internal class Conexao
     {
         //Conexão LOCAL        
-        //public string conect = "SERVER=localhost;DATABASE=aula;UID=root;PWD=;PORT=";       
+        public string conect = "SERVER=localhost;DATABASE=aula;UID=root;PWD=;PORT=";
 
         //Conexão Remota        
-        public string conect = "SERVER=mysql247.umbler.com;DATABASE=aula;UID=csharpaula;PWD=fabio123;PORT=41890;";
-        
+        //public string conect = "SERVER=mysql247.umbler.com;DATABASE=aula;UID=csharpaula;PWD=fabio123;PORT=41890;";        
 
         public MySqlConnection con = null;
 
@@ -31,8 +30,7 @@ namespace Projeto01
             catch (Exception ex)
             {
                 //erro
-                MessageBox.Show("Erro de conexão " + ex.Message + "\nVerifique o servidor");
-                
+                MessageBox.Show("Erro de conexão " + ex.Message + "\nVerifique o servidor");                
             }
         }
         //fexar conexão
