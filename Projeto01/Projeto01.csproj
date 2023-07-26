@@ -178,7 +178,10 @@
     <EmbeddedResource Include="Relatorio\FrmCliente.resx">
       <DependentUpon>FrmCliente.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Relatorio\RelCliente.rdlc" />
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\MySql.Data.MySqlClient.MySqlConnection.datasource" />
+    <None Include="Properties\DataSources\MySql.Data.MySqlClient.MySqlConnectionStringBuilder.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -227,6 +230,9 @@
     <Content Include="SqlServerTypes\x86\SqlServerSpatial140.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

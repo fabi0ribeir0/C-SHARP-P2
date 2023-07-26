@@ -9,20 +9,19 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 
-namespace Projeto01.Relatorio
+namespace testemysql
 {
-    public partial class FrmCliente : Form
+    
+    public partial class Form1 : Form
     {
-        public FrmCliente()
+        public Form1()
         {
             InitializeComponent();
         }
 
-        private void FrmCliente_Load(object sender, EventArgs e)
+        private void Form1_Load(object sender, EventArgs e)
         {
-            Conexao conect = new Conexao();
-            conect.AbrirConexao();
-            this.reportViewer1.RefreshReport();
+
         }
     }
 }
